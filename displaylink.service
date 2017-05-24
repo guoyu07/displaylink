@@ -1,0 +1,15 @@
+[Unit]
+Description=DisplayLink Manager Service
+After=akmods.service dkms.service
+Before=display-manager.service
+ConditionPathExists=!/sys/module/evdi
+#Conflicts=getty@tty7.service
+
+[Service]
+ExecStart=LIBDIR/displaylink/DisplayLinkManager
+Restart=always
+WorkingDirectory=LIBDIR/displaylink
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
